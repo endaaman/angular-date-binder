@@ -1,0 +1,27 @@
+{
+  "name": "angular-date-expander",
+  "version": "0.0.2",
+  "authors": [
+    "endaaman <buhibuhidog@gmail.com>"
+  ],
+  "main": "dist/angular-date-expander.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "angular": ">= 1.0.8"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "package.json",
+    "gulpfile.coffee",
+    "index.html",
+    "README.md"
+  ]
+}

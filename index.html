@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="sampleApp">
+<meta charset="utf-8">
+<title>sample</title>
+<script src="bower_components/angular/angular.js"></script>
+<script src="dist/angular-date-binder.js"></script>
+<script type="text/javascript">
+'use strict';
+angular.module('sampleApp', ['angularDateBinder'])
+.controller('Ctrl', function($scope) {
+    $scope.d = new Date();
+});
+</script>
+<body ng-controller="Ctrl">
+
+<div bind-date="d">
+    <h2>In Directive</h2>
+    <p>Date: {{d}}</p>
+    <p>Date Object: <input type="date" ng-model="d"></p>
+    <p>$year: <input type="number" ng-model="$year"></p>
+    <p>$month: <input type="number" ng-model="$month"></p>
+    <p>$date: <input type="number" ng-model="$date"></p>
+    <p>$hours: <input type="number" ng-model="$hours"></p>
+    <p>$minutes: <input type="number" ng-model="$minutes"></p>
+    <p>$seconds: <input type="number" ng-model="$seconds"></p>
+    <p>$lastDate: {{$lastDate}}</p>
+</div>
+<hr>
+<div>
+    <h2>Out of Directive</h2>
+    <p>Date: {{d}}</p>
+    <p>Date Object: <input type="date", ng-model="d"></p>
+</div>
+
+</body>
+</html>
