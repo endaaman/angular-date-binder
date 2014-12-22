@@ -45,7 +45,6 @@ angular.module 'angularDateBinder', []
                 refresh()
 
         scope.$watch '$year', (newYear, oldYear)->
-            console.log newYear
             if newYear and newYear isnt oldYear
                 current.setFullYear newYear
                 refresh()

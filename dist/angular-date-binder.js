@@ -46,7 +46,6 @@ angular.module('angularDateBinder', []).directive('bindDate', ["$parse", functio
         }
       });
       scope.$watch('$year', function(newYear, oldYear) {
-        console.log(newYear);
         if (newYear && newYear !== oldYear) {
           current.setFullYear(newYear);
           return refresh();
