@@ -4,7 +4,7 @@ coffee = require 'gulp-coffee'
 ngAnnotate = require 'gulp-ng-annotate'
 uglify = require 'gulp-uglify'
 concat = require 'gulp-concat'
-connect = require 'gulp-connect'
+webserver = require 'gulp-webserver'
 
 p = console.log
 
@@ -35,12 +35,12 @@ g.task 'js', ->
         .pipe uglify mangle: false
 
     t.pipe g.dest "#{conf.dest}/"
-    .pipe connect.reload()
 
 g.task 'serve', ->
-  connect.server
-    root: './'
-    livereload: true
+    g.src './'
+    .pipe webserver
+        port: 9000
+        livereload: true
 
 g.task 'watch', ->
     g.watch ["#{conf.src}/*.coffee"], ['js']
