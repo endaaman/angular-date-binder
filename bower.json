@@ -1,6 +1,6 @@
 {
   "name": "angular-date-binder",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/angular-date-binder.js",
   "homepage": "https://github.com/endaaman/angular-date-binder",
   "license": "MIT",
