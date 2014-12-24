@@ -9,6 +9,9 @@
 angular.module('sampleApp', ['angularDateBinder'])
 .controller('Ctrl', function($scope) {
     $scope.d = new Date();
+    $scope.makeDateNull = function(){
+        $scope.d = null
+    }
 });
 </script>
 <body ng-controller="Ctrl">
@@ -31,6 +34,8 @@ angular.module('sampleApp', ['angularDateBinder'])
     <p>Date: {{d}}</p>
     <p>Date Object: <input type="date", ng-model="d"></p>
 </div>
+<hr>
+<button ng-click="makeDateNull()">make date null</button>
 
 </body>
 </html>
