@@ -6,43 +6,52 @@ angular.module 'angularDateBinder', []
     restrict : 'A'
     scope: true
     link: (scope, element, attrs)->
+        validateDate = (date, abort)->
+            retval = not date? or date.constructor is Date
+            if abort and not retval
+                throw new Error "Expected `#{attrs.bindDate}` to be a date"
+            retval
         equalDate = (d1, d2)->
-            !!d1 and !!d2 and d1.getTime() is d2.getTime()
+            !!d1 and !!d2 and validateDate(d1) and validateDate(d2) and d1.getTime() is d2.getTime()
+        current = null
         getter = $parse attrs.bindDate
         setter = $parse(attrs.bindDate).assign
         storeDateObject = ->
-            getter scope.$parent
+            date = getter scope.$parent
+            validateDate date, true
+            date
         applyDateObject = (date)->
             setter scope.$parent, date
             setter scope, date
 
-        current = storeDateObject()
-
         calcLastDate = (date)->
             (new Date date.getFullYear(), date.getMonth() + 1, 0).getDate()
 
-        refresh = (updateDate)->
-            current = new Date current.getTime()
-            scope.$year = current.getFullYear()
-            scope.$year = current.getFullYear()
-            scope.$month = current.getMonth() + 1
-            scope.$date = current.getDate()
-            scope.$hours = current.getHours()
-            scope.$minutes = current.getMinutes()
-            scope.$seconds = current.getSeconds()
-            scope.$lastDate = calcLastDate current
+        refresh = (updates)->
+            if current?
+                if not updates? and not updates
+                    current = new Date current.getTime()
+                scope.$year = current.getFullYear()
+                scope.$year = current.getFullYear()
+                scope.$month = current.getMonth() + 1
+                scope.$date = current.getDate()
+                scope.$hours = current.getHours()
+                scope.$minutes = current.getMinutes()
+                scope.$seconds = current.getSeconds()
+                scope.$lastDate = calcLastDate current
+            else
+                scope.$year = scope.$year = scope.$month = scope.$date = scope.$hours = scope.$minutes = scope.$seconds = scope.$lastDate = null
 
-            applyDateObject current
-
-        scope.$parent.$watch attrs.bindDate, (newDateObject, oldDateObject)->
-            if newDateObject and not equalDate newDateObject, oldDateObject
+        watchDate = (newDateObject, oldDateObject)->
+            console.log 'watch:'
+            console.log newDateObject
+            if not newDateObject? or validateDate(newDateObject, true) and not equalDate newDateObject, oldDateObject
                 current = newDateObject
                 refresh()
 
-        scope.$watch attrs.bindDate, (newDateObject, oldDateObject)->
-            if newDateObject and not equalDate newDateObject, oldDateObject
-                current = newDateObject
-                refresh()
+        scope.$parent.$watch attrs.bindDate, watchDate
+
+        scope.$watch attrs.bindDate, watchDate
 
         scope.$watch '$year', (newYear, oldYear)->
             if newYear and newYear isnt oldYear
@@ -69,4 +78,5 @@ angular.module 'angularDateBinder', []
                 current.setSeconds newSeconds
                 refresh()
 
+        current = storeDateObject false
         refresh()
