@@ -43,8 +43,6 @@ angular.module 'angularDateBinder', []
                 scope.$year = scope.$year = scope.$month = scope.$date = scope.$hours = scope.$minutes = scope.$seconds = scope.$lastDate = null
 
         watchDate = (newDateObject, oldDateObject)->
-            console.log 'watch:'
-            console.log newDateObject
             if not newDateObject? or validateDate(newDateObject, true) and not equalDate newDateObject, oldDateObject
                 current = newDateObject
                 refresh()

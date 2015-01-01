@@ -50,8 +50,6 @@ angular.module('angularDateBinder', []).directive('bindDate', ["$parse", functio
         }
       };
       watchDate = function(newDateObject, oldDateObject) {
-        console.log('watch:');
-        console.log(newDateObject);
         if ((newDateObject == null) || validateDate(newDateObject, true) && !equalDate(newDateObject, oldDateObject)) {
           current = newDateObject;
           return refresh();
