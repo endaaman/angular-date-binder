@@ -33,23 +33,23 @@ angular.module('sampleApp', ['angularDateBinder'])
             <h2>In Directive</h2>
             <p>Date: {{date}}</p>
             <div class="row">
-                <div class="box col-xs-4">
+                <div class="box col-sm-4">
                     <h4>Date Object</h4>
                     <input class="form-control" type="date" ng-model="date">
                 </div>
             </div>
             <div class="row">
-                <div class="box col-xs-4">
+                <div class="box col-sm-4">
                     <h4>$year</h4>
                     <input class="form-control" type="number" ng-model="$year">
                     <select class="form-control" ng-model="$year" ng-options="year for year in range(2000, 2015)"></select>
                 </div>
-                <div class="box col-xs-4">
+                <div class="box col-sm-4">
                     <h4>$month</h4>
                     <input class="form-control" type="number" ng-model="$month">
                     <select class="form-control" ng-model="$month" ng-options="month for month in range(1, 12)"></select>
                 </div>
-                <div class="box col-xs-4">
+                <div class="box col-sm-4">
                     <h4>$date</h4>
                     <input class="form-control" type="number" ng-model="$date">
                     <select class="form-control" ng-model="$date" ng-options="date for date in range(1, $lastDate)"></select>
@@ -57,22 +57,22 @@ angular.module('sampleApp', ['angularDateBinder'])
             </div>
 
             <div class="row">
-                <div class="box col-xs-4">
+                <div class="box col-sm-4">
                     <h4>$hour</h4>
                     <input class="form-control" type="number" ng-model="$hour">
                     <select class="form-control" ng-model="$hour" ng-options="hour for hour in range(0, 23)"></select>
                 </div>
-                <div class="box col-xs-4">
+                <div class="box col-sm-4">
                     <h4>$minute</h4>
                     <input class="form-control" type="number" ng-model="$minute">
                     <select class="form-control" ng-model="$minute" ng-options="minute for minute in range(0, 59)"></select>
                 </div>
-                <div class="box col-xs-4">
+                <div class="box col-sm-4">
                     <h4>$second</h4>
                     <input class="form-control" type="number" ng-model="$second">
                     <select class="form-control" ng-model="$second" ng-options="second for second in range(0, 59)"></select>
                 </div>
-                <div class="box col-xs-4">
+                <div class="box col-sm-4">
                     <h4>$lastDate</h4>
                     {{$lastDate}}
                 </div>
