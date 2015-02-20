@@ -1,7 +1,7 @@
 {
   "name": "angular-date-binder",
-  "version": "0.1.1",
-  "main": "dist/angular-date-binder.js",
+  "version": "0.2.0",
+  "main": "angular-date-binder.js",
   "homepage": "https://github.com/endaaman/angular-date-binder",
   "license": "MIT",
   "dependencies": {
@@ -17,6 +17,6 @@
     "README.md"
   ],
   "devDependencies": {
-    "angular": "~1.3.8"
+    "angular": ">= 1.0.8"
   }
 }
