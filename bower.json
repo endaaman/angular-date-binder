@@ -15,8 +15,5 @@
     "gulpfile.coffee",
     "index.html",
     "README.md"
-  ],
-  "devDependencies": {
-    "angular": ">= 1.0.8"
-  }
+  ]
 }
