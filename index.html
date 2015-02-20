@@ -27,7 +27,7 @@ angular.module('sampleApp', ['angularDateBinder'])
 <div class="container">
     <div ng-controller="Ctrl">
         <h1>Angular Date Binder</h1>
-        <button class="btn btn-danger" ng-click="makeDateNull()">make date null</button>
+        <p><a href="https://github.com/endaaman/angular-date-binder">Github Repository</a></p>
         <hr />
         <div class="box" bind-date="date">
             <h2>In Directive</h2>
@@ -83,6 +83,7 @@ angular.module('sampleApp', ['angularDateBinder'])
             <h2>Out of Directive</h2>
             <p>Date: {{date}}</p>
             <p>Date Object: <input class="form-control" type="date", ng-model="date"></p>
+            <button class="btn btn-danger" ng-click="makeDateNull()">make date null</button>
         </div>
     </div>
 
