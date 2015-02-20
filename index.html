@@ -2,40 +2,90 @@
 <html ng-app="sampleApp">
 <meta charset="utf-8">
 <title>sample</title>
-<script src="bower_components/angular/angular.js"></script>
-<script src="dist/angular-date-binder.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="./bower_components/angular/angular.js"></script>
+<script src="./angular-date-binder.js"></script>
 <script type="text/javascript">
-'use strict';
 angular.module('sampleApp', ['angularDateBinder'])
 .controller('Ctrl', function($scope) {
-    $scope.d = new Date();
+    $scope.date = new Date();
     $scope.makeDateNull = function(){
-        $scope.d = null
+        $scope.date = null
     }
+    $scope.range = function(start, stop){
+        var list = new Array()
+        for (var i = parseInt(start); i <= parseInt(stop); i = i + 1) {
+            list.push(i)
+        }
+        return list
+    }
+
 });
 </script>
-<body ng-controller="Ctrl">
+<body>
+<div class="container">
+    <div ng-controller="Ctrl">
+        <h1>Angular Date Binder</h1>
+        <button class="btn btn-danger" ng-click="makeDateNull()">make date null</button>
+        <hr />
+        <div class="box" bind-date="date">
+            <h2>In Directive</h2>
+            <p>Date: {{date}}</p>
+            <div class="row">
+                <div class="box col-xs-4">
+                    <h4>Date Object</h4>
+                    <input class="form-control" type="date" ng-model="date">
+                </div>
+            </div>
+            <div class="row">
+                <div class="box col-xs-4">
+                    <h4>$year</h4>
+                    <input class="form-control" type="number" ng-model="$year">
+                    <select class="form-control" ng-model="$year" ng-options="year for year in range(2000, 2015)"></select>
+                </div>
+                <div class="box col-xs-4">
+                    <h4>$month</h4>
+                    <input class="form-control" type="number" ng-model="$month">
+                    <select class="form-control" ng-model="$month" ng-options="month for month in range(1, 12)"></select>
+                </div>
+                <div class="box col-xs-4">
+                    <h4>$date</h4>
+                    <input class="form-control" type="number" ng-model="$date">
+                    <select class="form-control" ng-model="$date" ng-options="date for date in range(1, $lastDate)"></select>
+                </div>
+            </div>
 
-<div bind-date="d">
-    <h2>In Directive</h2>
-    <p>Date: {{d}}</p>
-    <p>Date Object: <input type="date" ng-model="d"></p>
-    <p>$year: <input type="number" ng-model="$year"></p>
-    <p>$month: <input type="number" ng-model="$month"></p>
-    <p>$date: <input type="number" ng-model="$date"></p>
-    <p>$hours: <input type="number" ng-model="$hours"></p>
-    <p>$minutes: <input type="number" ng-model="$minutes"></p>
-    <p>$seconds: <input type="number" ng-model="$seconds"></p>
-    <p>$lastDate: {{$lastDate}}</p>
+            <div class="row">
+                <div class="box col-xs-4">
+                    <h4>$hour</h4>
+                    <input class="form-control" type="number" ng-model="$hour">
+                    <select class="form-control" ng-model="$hour" ng-options="hour for hour in range(0, 23)"></select>
+                </div>
+                <div class="box col-xs-4">
+                    <h4>$minute</h4>
+                    <input class="form-control" type="number" ng-model="$minute">
+                    <select class="form-control" ng-model="$minute" ng-options="minute for minute in range(0, 59)"></select>
+                </div>
+                <div class="box col-xs-4">
+                    <h4>$second</h4>
+                    <input class="form-control" type="number" ng-model="$second">
+                    <select class="form-control" ng-model="$second" ng-options="second for second in range(0, 59)"></select>
+                </div>
+                <div class="box col-xs-4">
+                    <h4>$lastDate</h4>
+                    {{$lastDate}}
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="box">
+            <h2>Out of Directive</h2>
+            <p>Date: {{date}}</p>
+            <p>Date Object: <input class="form-control" type="date", ng-model="date"></p>
+        </div>
+    </div>
+
 </div>
-<hr>
-<div>
-    <h2>Out of Directive</h2>
-    <p>Date: {{d}}</p>
-    <p>Date Object: <input type="date", ng-model="d"></p>
-</div>
-<hr>
-<button ng-click="makeDateNull()">make date null</button>
 
 </body>
 </html>
