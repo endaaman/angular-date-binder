@@ -1,6 +1,6 @@
 # angular-date-binder
 
-2-Way binding for `Date` object via `$year`, `$month`, `$date`, `$hours`, `$minutes` and `$seconds`.
+2-Way binding for `Date` object via `$year`, `$month`, `$date`, `$hour`, `$minute` and `$second`.
 `$lastDate` is the last date of the month of the current `Date` object.
 
 ## Install
@@ -10,52 +10,51 @@ bower install angular-date-binder
 
 ## Usage
 
-### Script
-
-```coffee
-angular.module('sampleApp', ['angularDateBinder'])
-.controller('Ctrl', function($scope) {
-    $scope.d = new Date();
-});
+```javascript
 ```
 
-### Markup
+Nice to use `<select>` Tag.
 
 ```html
-<!-- 
-Setting `Date` object to "date" attribute, 
-`$year`, `$month`, `$date`, `$hours`, `$minutes ,`$seconds` and `$lastDate` are 
-available on the child element scope.
--->
-<div date="d">
-    <p>Date: {{d}}</p>
-    <p>Date Object: <input type="date" ng-model="d"></p>
-    <p>$year: <input type="number" ng-model="$year"></p>
-    <p>$month: <input type="number" ng-model="$month"></p>
-    <p>$date: <input type="number" ng-model="$date"></p>
-    <p>$hours: <input type="number" ng-model="$hours"></p>
-    <p>$minutes: <input type="number" ng-model="$minutes"></p>
-    <p>$seconds: <input type="number" ng-model="$seconds"></p>
-    <p>$lastDate: {{$lastDate}}</p>
+<script>
+angular.module('sampleApp', ['angularDateBinder'])
+.controller('Ctrl', function($scope) {
+    $scope.date = new Date();
+
+    $scope.range = function(min, max){
+        var list = new Array()
+        for (var i = parseInt(min); i <= parseInt(max); i = i + 1) {
+            list.push(i)
+        }
+        return list
+    }
+}).filter('range', function() {
+    return function(list, min, max) {
+        for (var i = parseInt(min); i <= parseInt(max); i = i + 1) {
+        list.push(i)
+        }
+        return list
+    }
+});
+</script>
+<div ng-controller="Ctrl">
+    <p>{{date}}</p>
+    <div bind-date="date">
+        <div>
+            <h4>$year</h4>
+            <!-- direct binding to $year by <input type="number"/> -->
+            <input type="number" ng-model="$year">
+        </div>
+        <div>
+            <h4>$month</h4>
+            <!-- implemnted range function -->
+            <select ng-model="$month" ng-options="month for month in range(1, 12)"></select>
+        </div>
+        <div>
+            <h4>$date</h4>
+            <!-- or make custom filter -->
+            <select ng-model="$month" ng-options="month for month in [] | range:1:$lastDate"></select>
+        </div>
+    </div>
 </div>
 ```
-
-
-## Build
-
-### Normal Build
-```
-gulp build
-```
-
-### Minify Build
-```
-gulp prod build
-```
-
-### Watch
-```
-gulp
-```
-Only this, gulp will build, watch and serve `./`.
-
