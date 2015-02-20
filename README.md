@@ -3,6 +3,8 @@
 2-Way binding for `Date` object via `$year`, `$month`, `$date`, `$hour`, `$minute` and `$second`.
 `$lastDate` is the last date of the month of the current `Date` object.
 
+[example page](http://endaaman.github.io/angular-date-binder/)
+
 ## Install
 ```
 bower install angular-date-binder
